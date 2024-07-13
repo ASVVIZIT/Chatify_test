@@ -1,0 +1,113 @@
+<script setup>
+import Checkbox from '@/Components/Checkbox.vue';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+
+defineProps({
+    canLogin: {
+        type: Boolean,
+    },
+    canRegister: {
+        type: Boolean,
+    },
+    canResetPassword: {
+        type: Boolean,
+    },
+    status: {
+        type: String,
+    },
+});
+
+const form = useForm({
+    email: '',
+    password: '',
+    remember: false,
+});
+
+const submit = () => {
+    form.post(route('login'), {
+        onFinish: () => form.reset('password'),
+    });
+};
+</script>
+
+<template>
+    <GuestLayout>
+        <Head title="Вход на сервис (Log in)" />
+
+        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+            {{ status }}
+        </div>
+
+        <form @submit.prevent="submit">
+            <div>
+                <InputLabel for="email" value="Почта (Email)" />
+
+                <TextInput
+                    id="email"
+                    type="email"
+                    class="mt-1 block w-full"
+                    v-model="form.email"
+                    required
+                    autofocus
+                    autocomplete="username"
+                    :placeholder="'Введите электронную почту (Email)'"
+                />
+
+                <InputError class="mt-2" :message="form.errors.email" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="password" value="Пароль (Password)" />
+
+                <TextInput
+                    id="password"
+                    type="password"
+                    class="mt-1 block w-full"
+                    v-model="form.password"
+                    required
+                    autocomplete="current-password"
+                    :placeholder="'Ведите пароль Имя'"
+                />
+
+                <InputError class="mt-2" :message="form.errors.password" />
+            </div>
+
+            <div class="block mt-4">
+                <label class="flex items-center">
+                    <Checkbox name="remember" v-model:checked="form.remember" />
+                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Запомнить меня</span>
+                </label>
+            </div>
+
+            <div class="flex items-center justify-center m-2">
+                <PrimaryButton class="text-lg text-800 m-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Войти
+                </PrimaryButton>
+            </div>
+            <div class="flex items-center justify-center mt-1">
+                <div class="flex items-center justify-start pe-4 mt-0">
+                    <Link
+                        v-if="canRegister"
+                        :href="route('register')"
+                        class="underline text-sm m-1 text-gray-400 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    >Регистрация
+                    </Link>
+                </div>
+                <div class="flex items-center justify-end ps-4 mt-0">
+                    <Link
+                        v-if="canResetPassword"
+                        :href="route('password.request')"
+                        class="underline text-sm m-1 text-gray-400 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    >
+                        Забыли свой пароль?
+                    </Link>
+                </div>
+            </div>
+        </form>
+    </GuestLayout>
+</template>
