@@ -1,0 +1,31 @@
+Private Sub Worksheet_Change(ByVal Target As Range) 
+	On Error Resume Next 
+	If Not Intersect(Target, Range("B2:B5")) Is Nothing And Target.Cells.Count = 1 Then 
+	Application.EnableEvents = False newVal = Target Application.Undo oldval = Target 
+	If Len(oldval) >= 0 And oldval =< newVal Then 
+				 Target = Target & ", " & newVal
+			Else Target = newVal 
+			End If 
+			If Len(newVal) = 0 Then 
+				Target.ClearContents 
+				Application.EnableEvents = True
+			
+	End If 
+End Sub
+
+
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+	On Error Resume Next 
+	If Not Intersect(Target, Range(«B2:B10»)) Is Nothing And Target.Cells.Count = 1 Then
+		Application.EnableEvents = False
+		If Len(Target.Offset(0, 1)) = 0 Then 
+			Target.Offset(0, 1) = Target 
+		Else 
+			Target.End(xlToRight).Offset(0, 1) = Target 
+		End If 
+			Target.ClearContents
+			Application.EnableEvents = True
+	End If 
+End Sub
+

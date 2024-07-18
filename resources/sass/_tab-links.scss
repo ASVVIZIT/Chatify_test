@@ -1,0 +1,34 @@
+.tab-links {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    & > li {
+        position: relative;
+        padding: 12px 24px;
+        cursor: pointer;
+        user-select: none;
+
+        &:before {
+            position: absolute;
+            left: 0;
+            top: 100%;
+            width: 100%;
+            height: 2px;
+            background: dodgerblue;
+            opacity: 0;
+            transition: all .3s ease;
+            content: '';
+        }
+
+        &.active {
+            color: dodgerblue;
+        }
+
+        &.active:before {
+            opacity: 1;
+        }
+    }
+}

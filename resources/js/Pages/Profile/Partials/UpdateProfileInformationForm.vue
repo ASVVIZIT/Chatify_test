@@ -65,10 +65,30 @@ const form = useForm({
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
-
-            <div v-if="mustVerifyEmail && user.email_verified_at === null">
+<!--            <div v-if="mustVerifyEmail && user.email_verified_at !== null">-->
+            <div v-if="!mustVerifyEmail && user.email_verified_at === null">
                 <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">
                     Ваш адрес электронной почты не подтвержден.
+                    <Link
+                        :href="route('verification.send')"
+                        method="post"
+                        as="button"
+                        class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    >
+                        Нажмите здесь, чтобы повторно отправить электронное письмо с подтверждением.
+                    </Link>
+                </p>
+
+                <div
+                    v-show="status === 'verification-link-sent'"
+                    class="mt-2 font-medium text-sm text-green-600 dark:text-green-400"
+                >
+                    На ваш электронный адрес была отправлена новая ссылка для подтверждения.
+                </div>
+            </div>
+            <div v-else-if="!mustVerifyEmail && user.email_verified_at !== null">
+                <p class="text-sm mt-2 text-green-800 dark:text-green-400">
+                    Ваш адрес электронной почты подтвержден. {{ user.email_verified_at }}
                     <Link
                         :href="route('verification.send')"
                         method="post"

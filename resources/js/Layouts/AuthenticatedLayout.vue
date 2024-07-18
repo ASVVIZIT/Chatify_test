@@ -16,7 +16,7 @@ const showingNavigationDropdown = ref(false);
             <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
+                    <div class="flex justify-between h-12">
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
@@ -36,6 +36,11 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('profile.edit')" :active="route().current('profile.edit')">
                                     Профиль
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('chatify')" :active="route().current('chatify')">
+                                    Чат
                                 </NavLink>
                             </div>
                         </div>
@@ -132,9 +137,18 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('profile.edit')"> Профиль </ResponsiveNavLink>
+                        </div>
+
+                        <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <ResponsiveNavLink :href="route('chatify')" :active="route().current('chatify')">
+                                Чат
+                            </ResponsiveNavLink>
+                        </div>
+
+                        <div class="mt-3 space-y-1">
                             <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
+                                Выход
                             </ResponsiveNavLink>
                         </div>
                     </div>

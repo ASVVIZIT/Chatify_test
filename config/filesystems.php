@@ -38,8 +38,16 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('/'),
             'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'chatify' => [
+            'driver' => 'local',
+            'root' => storage_path('/chatify'),
+            'url' => env('APP_URL').'/storage/chatify',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -70,7 +78,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('public') => storage_path('storage'),
     ],
 
 ];

@@ -22,7 +22,7 @@ class PasswordController extends Controller
              'password.required'  => 'Поле пароль обязательно для заполнения.',
              'current_password.required'  => 'Поле подтверждения пароля обязательно для заполнения.',
              'current_password.current_password'  => 'Поле подтверждения пароля должно совпадать с новым и текушим паролем.'
-            ]
+           ]
         );
 
         $request->user()->update([

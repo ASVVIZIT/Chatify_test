@@ -33,16 +33,15 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
 </script>
 
 <template>
     <GuestLayout>
         <Head title="Вход на сервис (Log in)" />
-
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
-
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Почта (Email)" />
