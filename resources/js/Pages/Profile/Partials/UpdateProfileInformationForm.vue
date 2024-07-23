@@ -1,8 +1,8 @@
 <script setup>
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/Ui/InputError.vue';
+import InputLabel from '@/Components/Ui/InputLabel.vue';
+import Button from '@/Components/Ui/Button/Button.vue';
+import TextInput from '@/Components/Ui/TextInput.vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 
 defineProps({
@@ -108,7 +108,7 @@ const form = useForm({
             </div>
 
             <div class="flex items-center gap-4">
-                <PrimaryButton :disabled="form.processing">Сохранить</PrimaryButton>
+                <Button :disabled="form.processing">Сохранить</Button>
 
                 <Transition
                     enter-active-class="transition ease-in-out"

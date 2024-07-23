@@ -52,6 +52,14 @@ return [
             'throw' => false,
         ],
 
+        'ekd' => [
+            'driver' => 'local',
+            'root' => storage_path('/ekd'),
+            'url' => env('APP_URL').'/storage/ekd',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -78,7 +86,7 @@ return [
     */
 
     'links' => [
-        public_path('public') => storage_path('storage'),
+        public_path('storage') => storage_path('/'),
     ],
 
 ];

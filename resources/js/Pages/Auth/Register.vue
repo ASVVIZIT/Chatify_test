@@ -1,10 +1,10 @@
 <script setup>
 import LoginType from '@/Components/LoginType/LoginType.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/Ui/InputError.vue';
+import InputLabel from '@/Components/Ui/InputLabel.vue';
+import Button from '@/Components/Ui/Button/Button.vue';
+import TextInput from '@/Components/Ui/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
@@ -50,9 +50,15 @@ export default {
         <Head title="Регистрация профиля (Register)" />
         <form @submit.prevent="submit">
             <ul class="nav" style="display: inline-flex; width: 100%; padding: 6px; margin: 6px 6px; border-color: blue; border-width: 1px;">
-                <li @click="type = 'type_1'" class="nav-item" :class="form.type === 'type_1'?'active':''" style="display: block; width: 50%; color: white; border-radius: 5px 5px 50px 5px;">Мастер</li>
-                <li @click="type = 'type_2'" class="nav-item" :class="form.type === 'type_2'?'active':''" style="display: block; width: 50%; color: white; border-radius: 50px 5px 5px 5px;">Ученик</li>
+                <li @click="type = 'type_1'" class="nav-item" :class="form.type === 'type_1'?'active':''" style="display: block; width: 50%; color: white; border-radius: 5px 5px 50px 5px; cursor: pointer;">Компания</li>
+                <li @click="type = 'type_2'" class="nav-item" :class="form.type === 'type_2'?'active':''" style="display: block; width: 50%; color: white; border-radius: 50px 5px 5px 5px; cursor: pointer;">Пользователь</li>
             </ul>
+            <div v-if="type === 'type_1'" class="" style="padding: 6px; margin: 6px 6px; border-color: #67c212; color: white; border-width: 1px;">
+                Компания поля для заполнения
+            </div>
+            <div v-else-if="type === 'type_2'" class="" style="padding: 6px; margin: 6px 6px; border-color: #10c587; color: white; border-width: 1px;">
+                Пользователь поля для заполнения
+            </div>
             <div class="clear"></div>
             <div v-if="type === 'type_1'" class="" style="padding: 6px; margin: 6px 6px; border-color: red; border-width: 1px;">
                 <div>
@@ -206,7 +212,7 @@ export default {
                     class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 >Вы уже зарегистрированы?</Link>
 
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Зарегистрация</PrimaryButton>
+                <Button class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Зарегистрация</Button>
             </div>
         </form>
     </GuestLayout>

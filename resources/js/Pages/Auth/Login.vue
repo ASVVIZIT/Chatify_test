@@ -1,10 +1,10 @@
 <script setup>
-import Checkbox from '@/Components/Checkbox.vue';
+import Checkbox from '@/Components/Ui/Checkbox.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/Ui/InputError.vue';
+import InputLabel from '@/Components/Ui/InputLabel.vue';
+import Button from '@/Components/Ui/Button/Button.vue';
+import TextInput from '@/Components/Ui/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 
 defineProps({
@@ -84,9 +84,9 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-center m-2">
-                <PrimaryButton class="text-lg text-800 m-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <Button class="text-lg text-800 m-2" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Войти
-                </PrimaryButton>
+                </Button>
             </div>
             <div class="flex items-center justify-center mt-1">
                 <div class="flex items-center justify-start pe-4 mt-0">
